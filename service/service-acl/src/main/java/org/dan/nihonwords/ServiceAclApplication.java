@@ -12,7 +12,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2WebMvc;
  * @create 2023-07-14 11:22
  */
 
-@ComponentScan(basePackages={"org.dan.nihonwords"})
+//@ComponentScan(basePackages={"org.dan.nihonwords"})
 @SpringBootApplication
 @EnableSwagger2WebMvc
 @EnableDiscoveryClient

@@ -4,12 +4,11 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.dan.nihonwords.acl.service.AdminRoleService;
 import org.dan.nihonwords.acl.service.AdminService;
 import org.dan.nihonwords.acl.service.RoleService;
 import org.dan.nihonwords.common.result.Result;
 import org.dan.nihonwords.model.acl.Admin;
-import org.dan.nihonwords.acl.utils.MD5;
+import org.dan.nihonwords.common.utils.MD5;
 import org.dan.nihonwords.vo.acl.AdminQueryVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +24,6 @@ import java.util.Map;
 @Api(tags = "用户管理接口")
 @RestController
 @RequestMapping("/admin/acl/user/")
-@CrossOrigin
 public class AdminController {
 
     @Autowired

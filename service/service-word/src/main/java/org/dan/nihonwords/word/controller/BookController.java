@@ -28,7 +28,6 @@ import java.util.List;
 @RestController
 @Api(tags="词书管理")
 @RequestMapping("/admin/product/category")
-@CrossOrigin
 public class BookController {
 
     @Autowired

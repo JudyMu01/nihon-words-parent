@@ -32,7 +32,6 @@ import java.util.List;
 @RestController
 @Api(tags="单词管理")
 @RequestMapping("/admin/product/skuInfo")
-@CrossOrigin
 public class WordController {
 
     @Autowired

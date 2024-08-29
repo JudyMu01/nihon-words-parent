@@ -18,8 +18,8 @@ spring:
           predicates:
             - Path=/*/sys/**
 
-        - id: service-product
-          uri: lb://service-product
+        - id: service-word
+          uri: lb://service-word
           predicates:
             - Path=/*/product/**
 
@@ -28,4 +28,9 @@ spring:
           uri: lb://service-user
           predicates:
             - Path=/*/user/**
+
+        - id: service-home
+          uri: lb://service-home
+          predicates:
+            - Path=/*/home/**
 

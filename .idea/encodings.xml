@@ -3,14 +3,21 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/common/common-util/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/common/common-util/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common/rabbit-util/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/common/service-util/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/common/service-util/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/common/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/common/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/model/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/model/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service-client/service-word-client/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service-client/service-word-client/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service-client/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service-client/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/service-gateway/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/service/service-acl/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service/service-home/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service/service-study/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/service/service-user/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/service/service-word/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/service/src/main/java" charset="UTF-8" />

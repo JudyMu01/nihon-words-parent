@@ -1,4 +1,4 @@
-package org.dan.nihonwords.acl.utils;
+package org.dan.nihonwords.common.utils;
 
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;

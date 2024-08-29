@@ -29,7 +29,6 @@ import java.util.List;
 @Api(tags="词书类型管理")
 @RestController
 @RequestMapping("/admin/product/attrGroup")
-@CrossOrigin
 public class BooktypeController {
 
     @Autowired

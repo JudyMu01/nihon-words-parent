@@ -9,7 +9,11 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>service-gateway</artifactId>
+    <artifactId>service-client</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>service-word-client</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -22,17 +26,27 @@
             <groupId>org.dan</groupId>
             <artifactId>common-util</artifactId>
             <version>1.0-SNAPSHOT</version>
+            <scope>provided </scope>
         </dependency>
 
+        <dependency>
+            <groupId>org.dan</groupId>
+            <artifactId>model</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>provided </scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <scope>provided </scope>
+        </dependency>
+
+        <!-- 服务调用feign -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-gateway</artifactId>
-        </dependency>
-
-        <!-- 服务注册 -->
-        <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+            <scope>provided </scope>
         </dependency>
     </dependencies>
 

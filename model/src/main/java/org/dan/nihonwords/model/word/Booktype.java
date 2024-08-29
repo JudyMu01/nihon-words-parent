@@ -1,6 +1,9 @@
 package org.dan.nihonwords.model.word;
 
 import java.io.Serializable;
+
+import com.baomidou.mybatisplus.annotation.TableField;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.dan.nihonwords.model.base.BaseEntity;
@@ -38,5 +41,9 @@ public class Booktype extends BaseEntity implements Serializable {
      * 排序
      */
     private Integer sort;
+
+    @ApiModelProperty(value = "图标")
+    @TableField("img_url")
+    private String imgUrl;
 
 }
