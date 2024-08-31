@@ -3,12 +3,15 @@ package org.dan.nihonwords.word.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.dan.nihonwords.common.constant.MqConst;
 import org.dan.nihonwords.model.word.*;
+import org.dan.nihonwords.mq.service.RabbitService;
 import org.dan.nihonwords.vo.word.WordQueryVo;
 import org.dan.nihonwords.vo.word.WordVo;
 import org.dan.nihonwords.word.mapper.WordMapper;
 import org.dan.nihonwords.word.service.*;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,6 +43,9 @@ public class WordServiceImpl extends ServiceImpl<WordMapper, Word> implements Wo
 
     @Autowired
     private WordInBookService wordInBookService;
+
+    @Autowired
+    private RabbitService rabbitService;
     /**
      * 分页查询单词，条件查询为单词或翻译
      * @param pageParam
@@ -145,12 +151,26 @@ public class WordServiceImpl extends ServiceImpl<WordMapper, Word> implements Wo
     @Transactional(rollbackFor = {Exception.class})
     @Override
     public void publish(Long id, Boolean status) {
-        // 更改发布状态
-        Word wordUp = new Word();
-        wordUp.setId(id);
-        wordUp.setPublishStatus(status);
-        baseMapper.updateById(wordUp);
-        //TODO 商品上架 后续会完善：发送mq消息更新es数据
+        if(status == true){
+            // 更改发布状态
+            Word wordUp = new Word();
+            wordUp.setId(id);
+            wordUp.setPublishStatus(true);
+            baseMapper.updateById(wordUp);
+            //发送mq消息更新es数据， 发布单词
+            rabbitService.sendMessage(MqConst.EXCHANGE_GOODS_DIRECT,MqConst.ROUTING_GOODS_UPPER, id);
+        }else{
+            // 更改发布状态
+            Word wordUp = new Word();
+            wordUp.setId(id);
+            wordUp.setPublishStatus(false);
+            baseMapper.updateById(wordUp);
+
+            //发送mq消息更新es数据， 删除单词
+            rabbitService.sendMessage(MqConst.EXCHANGE_GOODS_DIRECT,MqConst.ROUTING_GOODS_LOWER, id);
+        }
+
+
 
     }
 

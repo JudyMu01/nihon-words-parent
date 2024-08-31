@@ -17,6 +17,7 @@
         <module>service-user</module>
         <module>service-home</module>
         <module>service-study</module>
+        <module>service-search</module>
     </modules>
 
     <dependencies>

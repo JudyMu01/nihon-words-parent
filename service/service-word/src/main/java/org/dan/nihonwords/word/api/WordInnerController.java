@@ -2,8 +2,11 @@ package org.dan.nihonwords.word.api;
 
 import io.swagger.annotations.ApiOperation;
 import org.dan.nihonwords.model.word.Booktype;
+import org.dan.nihonwords.model.word.Word;
+import org.dan.nihonwords.vo.word.WordVo;
 import org.dan.nihonwords.word.service.BooktypeService;
 import org.dan.nihonwords.word.service.WordInBookService;
+import org.dan.nihonwords.word.service.WordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +28,9 @@ public class WordInnerController {
 
     @Autowired
     private WordInBookService wordInBookService;
+
+    @Autowired
+    private WordService wordService;
 
     //根据词书类型id获取类型信息
     @ApiOperation(value = "获取分类信息")
@@ -49,5 +55,13 @@ public class WordInnerController {
         List<Long> wordIdList = wordInBookService.getWordIdListByBookId(wordbookId);
 
         return wordIdList;
+    }
+
+    //根据单词id获得单词信息
+    @ApiOperation(value = "根据单词id获得单词信息")
+    @GetMapping("inner/getSkuInfo/{skuId}")
+    public WordVo getSkuInfo(@PathVariable("skuId") Long skuId) {
+
+        return wordService.getWordVoById(skuId);
     }
 }
