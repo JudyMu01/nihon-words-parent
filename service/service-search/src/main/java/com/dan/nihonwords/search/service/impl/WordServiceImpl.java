@@ -1,18 +1,25 @@
 package com.dan.nihonwords.search.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.nacos.api.utils.StringUtils;
 import com.dan.nihonwords.search.repository.WordRepository;
 import com.dan.nihonwords.search.service.WordService;
 import lombok.extern.slf4j.Slf4j;
 import org.dan.nihonwords.client.word.WordFeignClient;
 import org.dan.nihonwords.model.search.WordEs;
+import org.dan.nihonwords.model.word.Word;
 import org.dan.nihonwords.model.word.WordMeaning;
+import org.dan.nihonwords.vo.search.WordEsQueryVo;
 import org.dan.nihonwords.vo.word.WordVo;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -46,7 +53,7 @@ public class WordServiceImpl implements WordService {
         if(null == wordVo) return;
 
         wordEs.setId(wordVo.getId());
-        wordEs.setKeyword(wordVo.getWord());
+        wordEs.setKeyword(wordVo.getWord() + wordVo.getKana());
         wordEs.setImgUrl(wordVo.getImgUrl());
         wordEs.setTitle(wordVo.getWord());
         wordEs.setAccent(wordVo.getAccent());
@@ -67,5 +74,28 @@ public class WordServiceImpl implements WordService {
     @Override
     public void hideWord(Long skuId) {
         this.wordEsRepository.deleteById(skuId);
+    }
+
+    @Override
+    public Page<WordEs> search(Pageable pageable, WordEsQueryVo wordEsQueryVo) {
+
+        Page<WordEs> page = null;
+        if(!StringUtils.isEmpty(wordEsQueryVo.getKeyword())) {
+            page = wordEsRepository.findByKeyword(wordEsQueryVo.getKeyword(), pageable);
+        }
+
+        List<WordEs> wordEsList =  page.getContent();
+
+        //获取word对应的翻译列表
+        if(!CollectionUtils.isEmpty(wordEsList)) {
+            List<Long> wordIdList = wordEsList.stream().map(wordEs -> wordEs.getId()).collect(Collectors.toList());
+            Map<Long, List<String>> wordIdToMeaningListMap = wordFeignClient.findMeanings(wordIdList);
+            if(null != wordIdToMeaningListMap) {
+                wordEsList.forEach(wordEs -> {
+                    wordEs.setMeaningList(wordIdToMeaningListMap.get(wordEs.getId()));
+                });
+            }
+        }
+        return page;
     }
 }

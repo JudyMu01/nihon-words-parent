@@ -24,7 +24,7 @@ public class SkuReceiver {
     private WordService wordService;
 
     /**
-     * 商品上架
+     * 单词发布
      * @param skuId
      * @param message
      * @param channel
@@ -47,7 +47,7 @@ public class SkuReceiver {
     }
 
     /**
-     * 商品下架
+     * 下架单词
      * @param skuId
      */
     @RabbitListener(bindings = @QueueBinding(

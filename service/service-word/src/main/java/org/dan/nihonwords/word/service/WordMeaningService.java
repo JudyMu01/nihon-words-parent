@@ -4,6 +4,7 @@ import org.dan.nihonwords.model.word.WordMeaning;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -20,4 +21,6 @@ public interface WordMeaningService extends IService<WordMeaning> {
     void removeByWordId(Long id);
 
     List<WordMeaning> findByWordId(Long id);
+
+    Map<Long, List<String>> findByWordIds(List<Long> wordIdList);
 }

@@ -17,11 +17,11 @@
             <artifactId>lombok</artifactId>
         </dependency>
 
-        <!--mybatis-plus-->
+        <!--mybatis-plus,<=3.5.6在UpdateWrapper中有SQL注入危险-->
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
-            <scope>provided </scope>
+            <version>3.5.7</version>
         </dependency>
 
         <dependency>

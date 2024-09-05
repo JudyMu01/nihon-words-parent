@@ -6,8 +6,13 @@ import org.dan.nihonwords.word.mapper.WordMeaningMapper;
 import org.dan.nihonwords.word.service.WordMeaningService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -43,4 +48,23 @@ public class WordMeaningServiceImpl extends ServiceImpl<WordMeaningMapper, WordM
         List<WordMeaning> wordMeaningList = baseMapper.selectList(wrapper);
         return wordMeaningList;
     }
+
+    @Override
+    public Map<Long, List<String>> findByWordIds(List<Long> wordIdList) {
+        Map<Long, List<String>> result = new HashMap<>();
+        //wordIdList遍历，得到每个wordId
+        wordIdList.forEach(wordId -> {
+            //根据wordId进行查询
+            List<WordMeaning> wordMeaningList =
+                    findByWordId(wordId);
+            //数据封装
+            if(!CollectionUtils.isEmpty(wordMeaningList)) {
+                List<String> meaningList = wordMeaningList.stream().map(WordMeaning::getTranslate).collect(Collectors.toList());
+                result.put(wordId,meaningList);
+            }
+        });
+        return result;
+    }
+
+
 }

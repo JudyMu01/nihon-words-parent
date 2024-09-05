@@ -1,19 +1,22 @@
 package org.dan.nihonwords.word.api;
 
 import io.swagger.annotations.ApiOperation;
+import org.checkerframework.checker.units.qual.A;
 import org.dan.nihonwords.model.word.Booktype;
 import org.dan.nihonwords.model.word.Word;
+import org.dan.nihonwords.model.word.WordMeaning;
 import org.dan.nihonwords.vo.word.WordVo;
 import org.dan.nihonwords.word.service.BooktypeService;
 import org.dan.nihonwords.word.service.WordInBookService;
+import org.dan.nihonwords.word.service.WordMeaningService;
 import org.dan.nihonwords.word.service.WordService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author mcd
@@ -28,6 +31,9 @@ public class WordInnerController {
 
     @Autowired
     private WordInBookService wordInBookService;
+
+    @Autowired
+    private WordMeaningService wordMeaningService;
 
     @Autowired
     private WordService wordService;
@@ -63,5 +69,15 @@ public class WordInnerController {
     public WordVo getSkuInfo(@PathVariable("skuId") Long skuId) {
 
         return wordService.getWordVoById(skuId);
+    }
+
+
+    //根据单词id的list获取单词解释
+    @ApiOperation(value = "根据单词ids获得单词翻译")
+    @GetMapping("inner/findMeanings")
+    public Map<Long, List<String>> findMeanings(@RequestBody List<Long> wordIdList){
+
+        return wordMeaningService.findByWordIds(wordIdList);
+
     }
 }

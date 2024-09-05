@@ -9,15 +9,16 @@
         <outputRelativeToContentRoot value="true" />
         <module name="common-util" />
         <module name="service-gateway" />
-        <module name="service-word" />
-        <module name="service-user" />
         <module name="service-study" />
         <module name="service-home" />
+        <module name="service-util" />
+        <module name="service-acl" />
+        <module name="service-leaderboard" />
+        <module name="service-word" />
+        <module name="service-user" />
         <module name="rabbit-util" />
         <module name="service-search" />
         <module name="model" />
-        <module name="service-util" />
-        <module name="service-acl" />
         <module name="service-word-client" />
       </profile>
     </annotationProcessing>
@@ -33,6 +34,7 @@
       <module name="service-client" options="" />
       <module name="service-gateway" options="-parameters" />
       <module name="service-home" options="-parameters" />
+      <module name="service-leaderboard" options="-parameters" />
       <module name="service-search" options="-parameters" />
       <module name="service-study" options="-parameters" />
       <module name="service-user" options="-parameters" />
