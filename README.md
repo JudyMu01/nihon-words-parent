@@ -1,4 +1,6 @@
 # nihonwords
+A server implementation of nihonwords - the Japanese word memorizing system.
+
 * [📦 Install ](#install) -- Install relevant dependencies and the project
 * [🔧 Usage ](#usage) -- Commands to run the server
 * [📦 Directory structure ](#directory) -- What does each file do
@@ -210,4 +212,25 @@ docker run -d -p 8200:8200 service-gateway:1.0.0
 
 
 ## Directory
+nihon-words-parent/
+│
+├── .idea/                         # Project settings for the IntelliJ IDEA environment
+├── common/                        # Contains shared resources
+│   ├── src/                       # Source code for common utilities
+│   └── pom.xml                    # Maven POM for common utilities module
+├── model/                         # Domain models
+│   ├── src/                       # Source code for models
+│   └── pom.xml                    # Maven POM for model module
+├── service-client/                # Client-side services
+│   ├── src/                       # Source code for service-client module
+│   └── pom.xml                    # Maven POM for service-client module
+├── service-gateway/               # API gateway for services
+│   ├── src/                       # Source code for API gateway
+│   └── pom.xml                    # Maven POM for service-gateway module
+├── service/                       # Core business logic and services
+│   ├── src/                       # Source code for core services
+│   └── pom.xml                    # Maven POM for service module
+├── .gitignore                     # Files to be ignored by Git
+├── README.md                      # Project description and documentation
+└── pom.xml                        # Parent Maven POM for all modules
 
