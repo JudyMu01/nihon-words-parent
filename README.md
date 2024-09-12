@@ -157,11 +157,11 @@ docker run -p 9200:9200 -p 9300:9300 --name elasticsearch --restart=always \-e "
 
 # install日文分词器
 
-# 1. 下载elasticsearch-analysis-ik-7.8.0.zip
+# 1. 下载elasticsearch-analysis-kuromoji-7.8.0.zip
 
-# 2. 上传解压：unzip elasticsearch-analysis-ik-7.8.0.zip -d ik-analyzer
+# 2. 上传解压：unzip elasticsearch-analysis-kuromoji-7.8.0.zip -d kuromoji-analyzer
 
-# 3. 上传到es容器：docker cp ./ik-analyzer a24eb9941759:/usr/share/elasticsearch/plugins
+# 3. 上传到es容器：docker cp ./kuromoji-analyzer a24eb9941759:/usr/share/elasticsearch/plugins
 
 # 4. 重启es：docker restart a24eb9941759
 # a24eb9941759：表示容器ID 运行时，需要改成自己的容器ID
@@ -212,25 +212,26 @@ docker run -d -p 8200:8200 service-gateway:1.0.0
 
 
 ## Directory
+```
 nihon-words-parent/
 │
-├── .idea/                         # Project settings for the IntelliJ IDEA environment
-├── common/                        # Contains shared resources
-│   ├── src/                       # Source code for common utilities
-│   └── pom.xml                    # Maven POM for common utilities module
-├── model/                         # Domain models
-│   ├── src/                       # Source code for models
-│   └── pom.xml                    # Maven POM for model module
-├── service-client/                # Client-side services
-│   ├── src/                       # Source code for service-client module
-│   └── pom.xml                    # Maven POM for service-client module
-├── service-gateway/               # API gateway for services
-│   ├── src/                       # Source code for API gateway
-│   └── pom.xml                    # Maven POM for service-gateway module
-├── service/                       # Core business logic and services
-│   ├── src/                       # Source code for core services
-│   └── pom.xml                    # Maven POM for service module
-├── .gitignore                     # Files to be ignored by Git
-├── README.md                      # Project description and documentation
-└── pom.xml                        # Parent Maven POM for all modules
-
+├── .idea/                         # Project settings for the IntelliJ IDEA environment  
+├── common/                        # Contains shared resources  
+│   ├── src/                       # Source code for common utilities  
+│   └── pom.xml                    # Maven POM for common utilities module  
+├── model/                         # Domain models  
+│   ├── src/                       # Source code for models  
+│   └── pom.xml                    # Maven POM for model module  
+├── service-client/                # Client-side services  
+│   ├── src/                       # Source code for service-client module  
+│   └── pom.xml                    # Maven POM for service-client module  
+├── service-gateway/               # API gateway for services  
+│   ├── src/                       # Source code for API gateway  
+│   └── pom.xml                    # Maven POM for service-gateway module  
+├── service/                       # Core business logic and services  
+│   ├── src/                       # Source code for core services  
+│   └── pom.xml                    # Maven POM for service module  
+├── .gitignore                     # Files to be ignored by Git  
+├── README.md                      # Project description and documentation  
+└── pom.xml                        # Parent Maven POM for all modules  
+```
